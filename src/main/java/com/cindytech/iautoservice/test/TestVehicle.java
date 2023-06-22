@@ -15,7 +15,7 @@ public class TestVehicle {
 //		v.setYear(2008);
 		v.setMileage(135000);
 //		v.setCustomer(2);
-		v.setMechanic_id(1);
+//		v.setMechanic_id(1);
 		
 		Vehicle v2 = new Vehicle();
 		//v.setVehicleId(3);
@@ -25,7 +25,7 @@ public class TestVehicle {
 //		v2.setYear(2008);
 		v2.setMileage(185000);
 //		v2.setCustomer(2);
-		v2.setMechanic_id(1);
+//		v2.setMechanic_id(1);
 		
 //		VehicleDao dao = new VehicleDao();
 		

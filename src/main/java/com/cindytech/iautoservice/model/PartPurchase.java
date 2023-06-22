@@ -1,12 +1,30 @@
 package com.cindytech.iautoservice.model;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "part_purchase")
 public class PartPurchase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "part")
     private Part part;
+    @ManyToOne
+    @JoinColumn(name="supplier_id", nullable=false)
     private String supplier;
+    @Column(name = "purchase_price")
     private double purchasePrice;
+    @Column(name = "sell_price")
     private double sellPrice;
+    @Column(name = "quantity")
     private int quantity;
+    @ManyToOne
+    @JoinColumn(name="order_id", nullable=false)
+    private Order order;
  
 
 
@@ -15,50 +33,6 @@ public class PartPurchase {
         this.setSupplier(supplier);
         this.setPurchasePrice(purchasePrice);
         this.setSellPrice(sellPrice);
-        this.quantity = quantity;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Part getPart() {
-        return part;
-    }
-
-    public void setPart(Part part) {
-        this.part = part;
-    }
-
-    public String getSupplier() {
-		return supplier;
-	}
-
-	public void setSupplier(String supplier) {
-		this.supplier = supplier;
-	}
-
-	public double getPurchasePrice() {
-		return purchasePrice;
-	}
-
-	public void setPurchasePrice(double purchasePrice) {
-		this.purchasePrice = purchasePrice;
-	}
-
-	public double getSellPrice() {
-		return sellPrice;
-	}
-
-	public void setSellPrice(double sellPrice) {
-		this.sellPrice = sellPrice;
-	}
-
-	public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 }

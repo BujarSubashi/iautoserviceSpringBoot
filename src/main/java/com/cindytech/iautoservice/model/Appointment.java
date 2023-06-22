@@ -18,10 +18,9 @@ public class Appointment {
   private Date dateAndTime;
   @Column(name = "description")
   private String description;
-  @Column(name = "vehicle_plate")
-  private String vehiclePlate;
-//  @Column(name = "mechanic_id")
-//  private int mechanicID;
+  @ManyToOne
+  @JoinColumn(name="vehicle_id", nullable=false)
+  private Vehicle vehicle;
   @ManyToOne
   @JoinColumn(name="mechanic_id", nullable=false)
   private Mechanic mechanic;

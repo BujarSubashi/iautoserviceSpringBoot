@@ -1,20 +1,33 @@
 package com.cindytech.iautoservice.model;
 
 import com.cindytech.iautoservice.enums.Status;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
+@Entity
+@Table(name = "order")
 public class Order {
-	
-	private Status status;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "order_id")
 	private int orderId;
+	@Column(name = "status")
+	private Status status;
+	@ManyToOne
+	@JoinColumn(name="supplier_id", nullable=false)
 	private Supplier supplier;
+	@OneToMany(mappedBy="order")
 	private List<PartPurchase> partPurchases;
+	@Column(name = "creation_time")
     private Date creationTime;
+	@Column(name = "completion_time")
     private Date completionTime;
+	@Column(name = "total_cost")
 	private double totalCost;
 
 	public Order() {}

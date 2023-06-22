@@ -1,10 +1,16 @@
 package com.cindytech.iautoservice.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
+@Entity
+@Table(name = "quote")
 public class Supplier {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sid")
 	private Integer idSupplier;
 	private String name;
 	private String id_vat_number;

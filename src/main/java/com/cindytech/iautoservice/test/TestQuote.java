@@ -1,6 +1,8 @@
 package com.cindytech.iautoservice.test;
 
+import com.cindytech.iautoservice.model.Mechanic;
 import com.cindytech.iautoservice.model.Quote;
+import com.cindytech.iautoservice.model.Vehicle;
 
 import java.sql.SQLException;
 
@@ -12,21 +14,21 @@ public class TestQuote {
 		Quote quote = new Quote();
 		quote.setPrice(200.00);
 		quote.setDescription("Tagliando");
-		quote.setLicencePlate("BB456CC");
-		quote.setMechanicId(1);
+		quote.setVehicle(new Vehicle());
+		quote.setMechanic(new Mechanic());
 		
 		Quote quote1 = new Quote();
 		quote1.setPrice(220.00);
 		quote1.setDescription("Tagliando");
-		quote1.setLicencePlate("BB456EE");
-		quote1.setMechanicId(1);
-		
+//		quote1.setLicencePlate("BB456EE");
+//		quote1.setMechanicId(1);
+//
 		Quote quote2 = new Quote();
 		quote2.setPrice(250.00);
 		quote2.setDescription("Tagliando");
-		quote2.setLicencePlate("BB456KG");
-		quote2.setMechanicId(1);
-		
+//		quote2.setLicencePlate("BB456KG");
+//		quote2.setMechanicId(1);
+//
 		/*Appointment appointment1 = new Appointment();
 		appointment1.setAppointmentDate(Timestamp.valueOf(LocalDateTime.of(2023, 3, 10, 14, 0)));
 		appointment1.setDescription("Cambio Olio");

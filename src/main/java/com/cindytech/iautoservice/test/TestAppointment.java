@@ -4,6 +4,7 @@ import com.cindytech.iautoservice.model.Appointment;
 import com.cindytech.iautoservice.model.Mechanic;
 import com.cindytech.iautoservice.repository.AppointmentRepository;
 import com.cindytech.iautoservice.repository.MechanicsRepository;
+import com.cindytech.iautoservice.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,9 @@ public class TestAppointment {
 	@Autowired
 	private MechanicsRepository mechanicsRepository;
 
+	@Autowired
+	private VehicleRepository vehicleRepository;
+
 	public void main(String[] args) {
 
 		Optional<Mechanic> m1 = mechanicsRepository.findById(6);
@@ -29,7 +33,7 @@ public class TestAppointment {
 		Appointment appointment = new Appointment();
 		appointment.setDateAndTime(Timestamp.valueOf(LocalDateTime.of(2023, 3, 10, 14, 0)));
 		appointment.setDescription("Cambio Olio");
-		appointment.setVehiclePlate("AA123AA");
+		appointment.setVehicle(vehicleRepository.findById(1).get());
 //		appointment.setMechanicID(1);
 		appointment.setMechanic(m1.get());
 
@@ -38,14 +42,14 @@ public class TestAppointment {
 		Appointment appointment1 = new Appointment();
 		appointment1.setDateAndTime(Timestamp.valueOf(LocalDateTime.of(2023, 3, 10, 15, 0)));
 		appointment1.setDescription("Cambio Olio");
-		appointment1.setVehiclePlate("AA123BB");
+		appointment1.setVehicle(vehicleRepository.findById(2).get());
 //		appointment.setMechanicID(1);
 		appointment.setMechanic(m1.get());
 
 		Appointment appointment2 = new Appointment();
-		appointment2.setDateAndTime(Timestamp.valueOf(LocalDateTime.of(2023, 3, 10, 16, 0)));
+		appointment2.setDateAndTime(Timestamp.valueOf(LocalDateTime.of(2021, 3, 10, 16, 0)));
 		appointment2.setDescription("Cambio Olio");
-		appointment2.setVehiclePlate("AA123CC");
+		appointment2.setVehicle(vehicleRepository.findById(1).get());
 //		appointment.setMechanicID(1);
 		appointment.setMechanic(m1.get());
 
@@ -60,7 +64,7 @@ public class TestAppointment {
 			List<Appointment> appointments = (List<Appointment>) appointmentRepository.findAll();
 			for (Appointment a : appointments) {
 
-				System.out.println("TARGA: "+ a.getVehiclePlate());
+				System.out.println("TARGA: "+ a.getVehicle().getLicensePlate());
 				appointment.toString();
 			}
 

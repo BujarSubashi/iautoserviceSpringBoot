@@ -4,7 +4,11 @@ import com.cindytech.iautoservice.model.Appointment;
 import com.cindytech.iautoservice.model.Mechanic;
 import com.cindytech.iautoservice.repository.AppointmentRepository;
 import com.cindytech.iautoservice.repository.MechanicsRepository;
-import org.junit.jupiter.api.*;
+import com.cindytech.iautoservice.repository.VehicleRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -22,6 +26,9 @@ class AppointmentTest {
     @Autowired
     private MechanicsRepository mechanicsRepository;
 
+    @Autowired
+    private VehicleRepository vehicleRepository;
+
     @BeforeEach
     public void init(){
         Optional<Mechanic> m1 = mechanicsRepository.findById(6);
@@ -30,13 +37,13 @@ class AppointmentTest {
         Appointment appointment = new Appointment();
         appointment.setDateAndTime(Timestamp.valueOf(LocalDateTime.of(2023, 3, 10, 14, 0)));
         appointment.setDescription("Cambio Olio Test");
-        appointment.setVehiclePlate("AA123AA");
+        appointment.setVehicle(vehicleRepository.findById(1).get());
         appointment.setMechanic(m1.get());
 
         Appointment appointment1 = new Appointment();
         appointment1.setDateAndTime(Timestamp.valueOf(LocalDateTime.of(2023, 3, 10, 15, 0)));
         appointment1.setDescription("Cambio Olio Test");
-        appointment1.setVehiclePlate("AA123BB");
+        appointment1.setVehicle(vehicleRepository.findById(2).get());
         appointment1.setMechanic(m1.get());
 
         // Salvataggio dell'appuntamento nel database
@@ -44,11 +51,9 @@ class AppointmentTest {
         appointmentRepository.save(appointment1);
     }
 
-
-
     @Test
     public void appointmentInsertionTest(){
-        List<Appointment> appointments = appointmentRepository.findAll().stream().filter(a -> a.getVehiclePlate().equals("AA123AA")||a.getVehiclePlate().equals("AA123BB")).collect(Collectors.toList());
+        List<Appointment> appointments = appointmentRepository.findAll().stream().filter(a -> a.getVehicle().getLicensePlate().equals("AA123AA")||a.getVehicle().getLicensePlate().equals("AA123BB")).collect(Collectors.toList());
         Assertions.assertTrue(appointments.size() > 1);
 
     }
